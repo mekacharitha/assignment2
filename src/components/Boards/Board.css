@@ -1,0 +1,23 @@
+.Links{
+    font-size: larger;
+    color:black;
+}
+
+.Card{
+    width :30%;
+    text-align: left;
+    margin:20px auto;
+    box-shadow: 0 2px 3px rgb(167, 164, 164);
+    border:2px solid rgb(70, 69, 69) ;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.AddBoardButton{
+    height:100px;
+    width:100px;
+    border-radius: 50px;
+    background-color: black;
+    color: aliceblue;
+    font-size: xx-large;
+}
