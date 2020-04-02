@@ -24,8 +24,9 @@ background: #080000;
 
 .Input{
     height: 25px;
-    width: 200px;
-    
+    width: 150px;
+    margin:5px;
+    margin-left: 50px;
 }
 
 .DropDown{
@@ -37,7 +38,7 @@ background: #080000;
 
 .Button{
     height:25px;
-    width:100px;
+    width:750px;
     background-color: #282c34;
     color: aliceblue;
 }
