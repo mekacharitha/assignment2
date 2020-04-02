@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Signup from './components/signup/Signup';
-import { Switch, Route } from 'react-router-dom';
-import Board from './components/Boards/Board';
-
+//import { Switch, Route, Redirect } from 'react-router-dom';
+//import Board from './components/Boards/Board';
+import Stage from './components/Boards/Stage/Stage'
 class App extends Component {
   state = {
     isLoggedIn: false,
@@ -14,18 +14,24 @@ class App extends Component {
       isLoggedIn:true,
     })
   }
+
   render() {
+   // let name = JSON.parse(localStorage.getItem("signedInUser"))
     return (
       <div className="App">
         <div className="Header"></div>
 
-        {this.state.isLoggedIn ?
+        {/* {this.state.isLoggedIn ?
           <Switch>
-            <Route path="/boards"><Board /></Route>
+            <Redirect to="/boards"></Redirect>
+            <Route path="/boards"> <div>Boards</div> </Route>
           </Switch>
           :
-          <Route path="/"><Signup handleSignIn={this.handleSignIn}/></Route>
-        }
+          <Route path="/" exact><Signup handleSignIn={this.handleSignIn}/></Route>
+        } */}
+
+        <Signup />
+        {/* <Stage /> */}
 
       </div>
     );

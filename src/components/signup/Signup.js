@@ -3,7 +3,7 @@ import './Signup.css';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import 'react-notifications/lib/notifications.css';
 import Board from '../Boards/Board';
-import {Redirect} from 'react-router-dom';
+//import {Redirect} from 'react-router-dom';
 
 class Signup extends Component {
 
@@ -11,6 +11,7 @@ class Signup extends Component {
         username: "",
         password: "",
         signup: false,
+        toggle:true,
     }
 
     usernameChangeHandler = (event) => {
@@ -31,8 +32,9 @@ class Signup extends Component {
             NotificationManager.success('Login Success');
             this.setState({
                 signup: true,
+                toggle:false
             })
-            this.props.handleSignIn();
+            // this.props.handleSignIn();
         }
         else {
             NotificationManager.error('No username or password', 'Click me!', 3000);
@@ -48,31 +50,38 @@ class Signup extends Component {
         localStorage.setItem("signedInUser", this.state.username)
     }
 
+    onLogoutHandle = () => {
+
+        this.setState({
+            username: "",
+            password: "",
+            signup: false,
+            toggle:true,
+        })
+       // localStorage.removeItem("signedInUser")
+        NotificationManager.success('Logout Success');
+    }
 
     render() {
-        if(this.state.signup)
-        {
-            return(
-                <Redirect to="/boards"></Redirect>
-            )
-        }
+        
         return (
             <div>
                 <NotificationContainer />
                 {this.state.signup ?
-                    <Board name={this.state.username} />
-                    :
+                    <Board name={this.state.username} logout={this.onLogoutHandle}/>
+                    : null }
+                {this.state.toggle ? 
                     <div className="SignUp">
                         <div>
                             <label>USERNAME : </label>
-                            <input className="Input"
+                            <input className="InputBox"
                                 type="text"
                                 value={this.state.username}
                                 onChange={this.usernameChangeHandler} />
                         </div>
                         <div>
                             <label>PASSWORD : </label>
-                            <input className="Input"
+                            <input className="InputBox"
                                 type="password"
                                 value={this.state.password}
                                 onChange={this.passwordChangeHandler} />
@@ -81,6 +90,7 @@ class Signup extends Component {
                             <button className="SignupButton" onClick={this.onSubmitHandler}>SIGNUP</button>
                         </div>
                     </div>
+                    : null
                 }
             </div>
         )

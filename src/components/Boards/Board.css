@@ -21,3 +21,13 @@
     color: aliceblue;
     font-size: xx-large;
 }
+
+.LogoutBtn{
+    position: fixed;
+    width: 100px;
+    height: 36px;
+    right: 36px;
+    top: 36px; 
+    border-radius: 2px;
+    
+}

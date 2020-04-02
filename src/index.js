@@ -14,3 +14,17 @@ ReactDOM.render(app, document.getElementById('root'));
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+
+// import 'antd/es/input/style/index.css';
+// import 'antd/es/button/style/index.css';
+// import 'antd/es/cascader/style/index.css';
+
+// import { Button } from 'antd';
+// ReactDOM.render(
+// <div>
+// <Button type="primary">Primary</Button>
+// <Button>Default</Button>
+// <Button type="dashed">Dashed</Button>
+// <Button type="danger">Danger</Button>
+// </div>
+// , document.getElementById('root'));

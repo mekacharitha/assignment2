@@ -1,0 +1,38 @@
+.Title{
+    height:75px;
+    width:300px;
+    border: 2px solid black;
+    padding:10px;
+    font-size: x-large;
+    color:black;
+}
+
+.Tasks{
+    height:250px;
+    width:300px;
+    overflow-y: auto;
+    border: 2px solid black;
+}
+
+.IconView{
+    height:75px;
+    width:300px;
+    border: 2px solid black;
+    padding: 10px;
+}
+
+.Stage{
+    /* border: 5px solid black; */
+    /* box-shadow: 0 2px 3px black; */
+    box-sizing: border-box;
+    width:300px;
+    height:450px;
+    margin:10px,5px;
+}
+
+.Button{
+    background-color: #282c34;
+    color: aliceblue;
+    margin:2px;
+    width:30%;
+}
