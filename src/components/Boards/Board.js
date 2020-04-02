@@ -79,7 +79,7 @@ class Board extends Component {
             //console.log(array1)
         }
         return (
-            <div style={{width:"100%" , height:"100%"}}>
+            <div >
                 <NotificationContainer />
                 <button onClick={this.props.logout} style={{ backgroundColor: "white", color: "#282c34" }} className="LogoutBtn">LOGOUT</button>
 

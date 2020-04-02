@@ -74,20 +74,21 @@ class Display extends React.Component {
 
 
     }
-    handleAddtask = () => {
+    handleAddtask = (stageName , taskName) => {
         let localStorageData = JSON.parse(localStorage.getItem(this.props.username));
         let array = localStorageData.boards[this.props.board].map(obj => {
             return Object.keys(obj)
         })
         let index = array.findIndex((ele) => {
-            return ele == this.state.selectValue
+            return ele == stageName
         })
         let arr = Object.values(localStorageData.boards[this.props.board][index])
-        arr[0].push(this.state.taskName)
+        arr[0].push(taskName)
         console.log(arr)
         localStorage.setItem(this.props.username, JSON.stringify(localStorageData))
         this.setState({ selectValue: '', taskName: '' })
     }
+    
     handleRearrange = () => {
         let localStorageData = JSON.parse(localStorage.getItem(this.props.username));
         let array = localStorageData.boards[this.props.board].map(obj => {
@@ -113,36 +114,15 @@ class Display extends React.Component {
     render() {
         let dropDownList = []
         let localStorageData = JSON.parse(localStorage.getItem(this.props.username));
-       // console.log(localStorageData.boards[this.props.board])
-        // let array = localStorageData.boards[this.props.board].map(obj => {
-        //     dropDownList.push(<option value={Object.keys(obj)}>{Object.keys(obj)}</option>)
-        //     return <th scope="col">{Object.keys(obj)}</th>
-        // })
-
+      
         let array = localStorageData.boards[this.props.board].map(obj =>{
+            dropDownList.push(<option value={Object.keys(obj)}>{Object.keys(obj)}</option>)
             return Object.keys(obj)[0]
         })
 
-        // let array = localStorageData.boards[this.props.board].map(obj => {
-        //     // dropDownList.push(<option value={Object.keys(obj)}>{Object.keys(obj)}</option>)
-        //     return <Col span={8}><Card title={Object.keys(obj)} style={{ width: 300 }}>
-        //         {Object.values(obj).map(task => {
-        //             return task.map((ele) => {
-        //                 return <li>{ele}</li>
-        //             })
-        //         })}
-        //     </Card></Col>
-        // })
-        
-
         let dropDownListForDeletion = dropDownList.slice(1, localStorageData.boards[this.props.board].length - 1)
         let dropDownListForRearranging = dropDownList.slice(0, localStorageData.boards[this.props.board].length - 1)
-        // let array1 = localStorageData.boards[this.props.board].map(obj => {
-        //     let tasks = Object.values(obj)
-        //     return tasks.map((task) => {
-        //         return (<td>{task}</td>)
-        //     })
-        // })
+        
         return (
             <div>
                 <h1 style={{ position: "fixed", top: "36px", left: "45%", color: "white" }}>  {this.props.board} Board</h1>
@@ -151,7 +131,7 @@ class Display extends React.Component {
                 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
                 <link rel="stylesheet" type="text/css" href="styles.css" />
 
-                <div style={{ marginLeft: "5%", marginRight: "5%", height: "30%" ,width:"100%"}}>
+                <div style={{ marginLeft: "5%", marginRight: "5%", height: "25vh" ,width:"100%"}}>
 
                     <div style={{ float: "left", height: "30%", width: "30%", padding: "20px", marginRight: "25px" }}>
                         <div style={{ margin: "10px" }}>
@@ -186,14 +166,14 @@ class Display extends React.Component {
 
                         </div>
                     </div>
-                    <div style={{ float: "right", height: "30%", width: "30%", padding: "20px" }}>
+                    <div style={{ float: "right", height: "30%", width: "30%", padding: "20px", marginRight:"50px" }}>
                         <div style={{ margin: "10px" }}>
                             <select value={this.state.reaStage}
                                 className="DropDown"
                                 style={{ margin: "5px" }}
                                 onChange={this.handleRearrangestage} >
                                 <option label="Stage to Rearrange "></option>
-                                {dropDownListForRearranging}
+                                {dropDownListForDeletion}
                             </select>
 
                             <select value={this.state.index}
@@ -201,7 +181,7 @@ class Display extends React.Component {
                                 style={{ margin: "5px" }}
                                 onChange={this.handleRearrangeIndex} >
                                 <option label=" After Stage"></option>
-                                {dropDownListForDeletion}
+                                {dropDownListForRearranging}
                             </select>
 
                         </div>
@@ -224,8 +204,12 @@ class Display extends React.Component {
                     </table>
                 </div> */}
                 
-                <div style={{display:"flex" , overflowX:"scroll" , backgroundColor:"pink"}}>
-                    <Stage />
+                <div style={{display:"flex" , overflowX:"scroll", marginLeft:"50px", marginRight:"50px" , padding:"10px"}}>
+                    {array.map((name)=>{
+                        return <Stage stageName={name} username={this.props.username} board={this.props.board} onAddTask={(taskName)=>{this.handleAddtask(name , taskName)}}/>
+                    })
+                    }
+                    
                 </div>
 
                 {/* <div className="site-card-wrapper">

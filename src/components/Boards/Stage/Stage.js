@@ -7,25 +7,46 @@ import {Button} from "antd";
 import { AiOutlineDelete , AiOutlinePlus} from "react-icons/ai";
 
 class Stage extends Component {
+    state={
+        taskTitle:"",
+    }
+
+    addTask = ()=>{
+
+    }
+
     render() {
+        let localStorageData = JSON.parse(localStorage.getItem(this.props.username));
+        let taskArray = localStorageData.boards[this.props.board].map(obj => {
+            let tasks = Object.values(obj)
+            return tasks.map((task) => {
+                return (<li>{task}</li>)
+            })
+        })
+        let array = localStorageData.boards[this.props.board].map(obj => {
+            return Object.keys(obj)
+        })
+        let index = array.findIndex((ele) => {
+            return ele == this.props.stageName
+        })
+
+        taskArray = Object.values(localStorageData.boards[this.props.board][index][this.props.stageName]).map(ele => { return <li>{ele}</li> })
+      
         return (
-            // horizantal scrolllbar
-            <div>
                 <div className="Stage">
                     <div className="Title">
-                        <p>Stage Name</p>
+                        {this.props.stageName}
                     </div>
                     <div className="Tasks">
-                        <li>abc</li>
-                        <li>xyz</li>
+                        {taskArray}
                     </div>
                     <div className="IconView">
-                        <Button className="Button" type="primary" size="small"><AiOutlinePlus /> Task</Button>
+                        <Button className="Button" type="primary" size="small" onClick={()=>{this.props.onAddTask( this.state.taskName)}}><AiOutlinePlus /> Task</Button>
                         <Button className="Button" type="primary" size="small"><AiOutlineDelete />   Stage</Button>
                         <Button className="Button" type="primary" size="small">Rearrange</Button>
                     </div>
                 </div>
-                </div>
+               
         )
     }
 }

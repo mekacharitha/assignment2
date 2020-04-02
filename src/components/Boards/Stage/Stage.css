@@ -1,7 +1,7 @@
 .Title{
     height:75px;
     width:300px;
-    border: 2px solid black;
+    border: 1px solid black;
     padding:10px;
     font-size: x-large;
     color:black;
@@ -11,13 +11,13 @@
     height:250px;
     width:300px;
     overflow-y: auto;
-    border: 2px solid black;
+    border: 1px solid black;
 }
 
 .IconView{
     height:75px;
     width:300px;
-    border: 2px solid black;
+    border: 1px solid black;
     padding: 10px;
 }
 
@@ -27,7 +27,8 @@
     box-sizing: border-box;
     width:300px;
     height:450px;
-    margin:10px,5px;
+    margin:20px,10px;
+    margin-right: 10px;
 }
 
 .Button{
@@ -35,4 +36,5 @@
     color: aliceblue;
     margin:2px;
     width:30%;
+    border-color: azure;
 }
